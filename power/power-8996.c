@@ -183,14 +183,17 @@ static int process_activity_launch_hint(void *data)
     ALOGD("LAUNCH HINT: %s", data ? "ON" : "OFF");
     if (data && launch_mode == 0) {
         launch_handle = process_boost(launch_handle, duration);
+        launch_boost_info_t *info = (launch_boost_info_t *)data;
         if (launch_handle > 0) {
             launch_mode = 1;
             ALOGI("Activity launch hint handled");
+            ALOGV("LAUNCH_HINT: %s (pid=%d)", info->packageName, info->pid);
+            start_prefetch(info->pid, info->packageName);
             return HINT_HANDLED;
         } else {
             return HINT_NONE;
         }
-    } else if (data == NULL  && launch_mode == 1) {
+    } else if (data == NULL && launch_mode == 1) {
         release_request(launch_handle);
         launch_mode = 0;
         return HINT_HANDLED;

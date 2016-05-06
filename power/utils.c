@@ -53,9 +53,12 @@ char scaling_gov_path[4][80] ={
 };
 
 static void *qcopt_handle;
+static void *iop_handle;
 static int (*perf_lock_acq)(unsigned long handle, int duration,
     int list[], int numArgs);
 static int (*perf_lock_rel)(unsigned long handle);
+static int (*perf_io_prefetch_start)(int, const char*);
+static int (*perf_io_prefetch_stop)();
 static struct list_node active_hint_list_head;
 
 static void *get_qcopt_handle()
@@ -72,6 +75,21 @@ static void *get_qcopt_handle()
             ALOGE("Unable to open %s: %s\n", qcopt_lib_path,
                     dlerror());
         }
+    }
+
+    return handle;
+}
+
+static void *get_iop_handle()
+{
+    char iop_lib_path[PATH_MAX] = {0};
+    void *handle = NULL;
+
+    dlerror();
+
+    handle = dlopen("libqti-iop-client.so", RTLD_NOW | RTLD_LOCAL);
+    if (!handle) {
+        ALOGE("Unable to open prefetcher: %s\n", dlerror());
     }
 
     return handle;
@@ -100,6 +118,32 @@ static void __attribute__ ((constructor)) initialize(void)
             ALOGE("Unable to get perf_lock_rel function handle.\n");
         }
     }
+
+    iop_handle = get_iop_handle();
+
+    if (!iop_handle) {
+        ALOGE("Failed to get prefetcher handle.\n");
+    } else {
+        perf_io_prefetch_start = (int(*)(int, const char *))dlsym(
+                iop_handle, "perf_io_prefetch_start");
+        if (!perf_io_prefetch_start) {
+            goto fail_iop;
+        }
+
+        perf_io_prefetch_stop = (int(*)())dlsym(
+                iop_handle, "perf_io_prefetch_stop");
+        if (!perf_io_prefetch_stop) {
+            goto fail_iop;
+        }
+    }
+
+fail_iop:
+    perf_io_prefetch_start = NULL;
+    perf_io_prefetch_stop = NULL;
+    if (iop_handle) {
+        dlclose(iop_handle);
+        iop_handle = NULL;
+    }
 }
 
 static void __attribute__ ((destructor)) cleanup(void)
@@ -107,6 +151,11 @@ static void __attribute__ ((destructor)) cleanup(void)
     if (qcopt_handle) {
         if (dlclose(qcopt_handle))
             ALOGE("Error occurred while closing qc-opt library.");
+    }
+
+    if (iop_handle) {
+        if (dlclose(iop_handle))
+            ALOGE("Error occurred while closing prefetcher library.");
     }
 }
 
@@ -342,6 +391,14 @@ void undo_initial_hint_action()
     if (qcopt_handle) {
         if (perf_lock_rel) {
             perf_lock_rel(1);
+        }
+    }
+}
+
+void start_prefetch(int pid, const char* packageName) {
+    if (iop_handle) {
+        if (perf_io_prefetch_start) {
+            perf_io_prefetch_start(pid, packageName);
         }
     }
 }
