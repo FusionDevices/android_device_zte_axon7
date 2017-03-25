@@ -1,0 +1,156 @@
+# Audio
+af.fast_track_multiplier=1
+audio.deep_buffer.media=true
+audio.dolby.ds2.enabled=false
+audio.dolby.ds2.hardbypass=false
+audio_hal.period_size=192
+audio.offload.buffer.size.kb=64
+audio.offload.gapless.enabled=true
+audio.offload.min.duration.secs=30
+audio.offload.multiaac.enable=true
+audio.offload.multiple.enabled=true
+audio.offload.passthrough=false
+audio.offload.pcm.16bit.enable=true
+audio.offload.pcm.24bit.enable=true
+audio.offload.track.enable=true
+audio.offload.video=true
+audio.safx.pbe.enabled=true
+media.stagefright.audio.sink=280
+persist.audio.fluence.speaker=true
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.ssr.3mic=false
+ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.ssr=false
+tunnel.audio.encode=false
+use.qti.sw.ape.decoder=true
+use.voice.path.for.pcm.voip=true
+
+# Bluetooth
+bt.max.hfpclient.connections=1
+qcom.bluetooth.soc=rome
+ro.bluetooth.emb_wp_mode=true
+ro.bluetooth.wipower=true
+
+# Camera
+persist.camera.gyro.disable=0
+persist.camera.preview.ubwc=0
+persist.camera.video.ubwc=0
+persist.camera.stats.test=5
+camera.disable_zsl_mode=1
+
+# CNE
+persist.cne.feature=1
+
+# Device Launched With M 
+ro.product.first_api_level=23
+
+# Display
+ro.sf.lcd_density=640
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=384m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
+debug.egl.hw=1
+debug.gralloc.enable_fb_ubwc=1
+debug.sf.hw=1
+dev.pm.dyn_samplingrate=1
+persist.demo.hdmirotationlock=false
+persist.hwc.enable_vds=1
+persist.sys.wfd.virtual=0
+ro.opengles.version=196610
+ro.qcom.ad=1
+ro.qcom.ad.calib.data=/system/etc/calib.cfg
+ro.qcom.ad.sensortype=2
+ro.qualcomm.display.paneltype=1
+sdm.debug.disable_rotator_split=1
+sdm.perf_hint_window=50
+
+# Factory reset protection
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+# GPS
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+
+# Media
+media.aac_51_output_enabled=true
+drm.service.enabled=1
+vidc.debug.perf.mode=2
+vidc.enc.disable.pq=true
+vidc.enc.dcvs.extra-buff-count=2
+
+# Perf
+ro.sys.fw.bg_apps_limit=60
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.min_freq_0=307200
+ro.min_freq_4=307200
+
+# Qualcomm support
+persist.timed.enable=true
+
+# RIL (RADIO)
+DEVICE_PROVISIONED=1
+persist.data.iwlan.enable=true
+persist.data.qmi.adb_logmask=0
+persist.dpm.feature=0
+persist.net.doxlat=false
+persist.radio.add_power_save=1
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.calls.on.ims=true
+persist.radio.csvt.enabled=false
+persist.radio.custom_ecc=1
+persist.radio.flexmap_type=disabled
+persist.radio.hw_mbn_update=1
+persist.radio.mt_sms_ack=20
+persist.radio.multisim.config=dsds
+persist.radio.rat_on=combine
+persist.radio.sap_silent_pin=true
+persist.radio.sib16_support=1
+persist.radio.start_ota_daemon=0
+persist.radio.sw_mbn_openmkt=1
+persist.radio.sw_mbn_update=1
+persist.radio.sw_mbn_volte=1
+persist.rild.nitz_long_ons_0=""
+persist.rild.nitz_long_ons_1=""
+persist.rild.nitz_long_ons_2=""
+persist.rild.nitz_long_ons_3=""
+persist.rild.nitz_plmn=""
+persist.rild.nitz_short_ons_0=""
+persist.rild.nitz_short_ons_1=""
+persist.rild.nitz_short_ons_2=""
+persist.rild.nitz_short_ons_3=""
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+ril.subscription.types=NV,RUIM
+ro.telephony.call_ring.multiple=false
+ro.telephony.default_network=10,10
+persist.data.mode=concurrent
+persist.data.netmgrd.qos.enable=true
+ro.use_data_netmgrd=true
+persist.data.df.agg.dl_pkt=10
+persist.data.df.agg.dl_size=4096
+persist.data.df.dev_name=rmnet_usb0
+persist.data.df.dl_mode=5
+persist.data.df.iwlan_mux=9
+persist.data.df.mux_count=8
+persist.data.df.ul_mode=5
+persist.data.iwlan.enable=true
+persist.data.qmi.adb_logmask=0
+persist.data.wda.enable=true
+persist.rmnet.data.enable=true
+ro.telephony.ril_class=Axon7RIL
+
+# Sensors
+ro.qti.sensors.dev_ori=false
+ro.qti.sensors.pmd=false
+ro.qti.sensors.sta_detect=false
+ro.qti.sensors.mot_detect=false
+
+# WLAN
+wifi.interface=wlan0
+
+# WiFi Calling and VoLTE
+persist.data.iwlan.enable=true
