@@ -168,8 +168,7 @@
   TARGET_USERIMAGES_USE_F2FS := true
 
 # Properties
-# Properties
-  TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+  TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Qualcomm support
   BOARD_USES_QCOM_HARDWARE := true
