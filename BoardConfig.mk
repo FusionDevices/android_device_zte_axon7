@@ -167,6 +167,10 @@
   TARGET_USERIMAGES_USE_EXT4 := true
   TARGET_USERIMAGES_USE_F2FS := true
 
+# Properties
+# Properties
+  TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+
 # Qualcomm support
   BOARD_USES_QCOM_HARDWARE := true
   BOARD_USES_QC_TIME_SERVICES := true
@@ -179,6 +183,9 @@
   TARGET_RECOVERY_FSTAB := device/zte/axon7/rootdir/etc/fstab.qcom
   TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_axon7
   TARGET_RELEASETOOLS_EXTENSIONS := device/zte/axon7
+
+# RIL
+  BOARD_RIL_CLASS := ../../../device/zte/axon7/ril/
 
 # Sensors
   USE_SENSOR_MULTI_HAL := true
