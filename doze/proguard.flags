@@ -1,0 +1,3 @@
+-keep class com.nitrogen.settings.doze.* {
+  *;
+}
