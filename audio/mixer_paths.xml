@@ -1894,27 +1894,13 @@
               <ctl name="PORT2 Sync Domain" value="aif2" />
 	</path>
 
-   <!-- <path name="speaker">
+    <path name="speaker">
         <ctl name="SLIM RX1 MUX" value="SB1_PB" />
         <ctl name="SLIM RX2 MUX" value="SB1_PB" />
         <ctl name="SLIM_0_RX Channels" value="Two" />
 		<ctl name="PORT2 Sync Domain" value="slimbus" />
         <ctl name="SDTO2 Source Selector" value="SBI1" />
-        </path> -->
-
-    <path name="speaker">
-        <ctl name="SLIM RX1 MUX" value="SB1_PB" />
-        <ctl name="SLIM RX2 MUX" value="SB1_PB" />
-        <ctl name="SLIM_0_RX Channels" value="Two" />
-                <ctl name="DSP Sync Domain" value="slimbus" />
-        <ctl name="DSPI3 Source Selector" value="SBI1" />
-                <ctl name="DSP Mode" value="sound_record" />
-                <ctl name="DSP Downlink Status" value="on" />
-                <ctl name="DSPO3 Mixer DSPI3_Switch" value="1" />
-        <ctl name="PORT2 Sync Domain" value="slimbus" />
-        <ctl name="SDTO2 Source Selector" value="DSPO3" />
-    </path>
-    
+        </path>
 
     <path name="speaker-off-dolby">
         <ctl name="SLIM RX1 MUX" value="SB1_PB" />

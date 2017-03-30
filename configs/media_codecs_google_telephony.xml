@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright (C) 2014 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +14,12 @@
      limitations under the License.
 -->
 
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?android:attr/colorControlHighlight">
-    <item android:drawable="@color/switch_bar_background" />
-</ripple>
-
+<Included>
+    <Decoders>
+        <MediaCodec name="OMX.google.gsm.decoder" type="audio/gsm">
+            <Limit name="channel-count" max="1" />
+            <Limit name="sample-rate" ranges="8000" />
+            <Limit name="bitrate" range="13000" />
+        </MediaCodec>
+    </Decoders>
+</Included>

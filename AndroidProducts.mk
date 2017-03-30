@@ -14,4 +14,5 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_axon7.mk
+    $(LOCAL_DIR)/full_axon7.mk \
+    $(LOCAL_DIR)/nitrogen_axon7.mk
