@@ -304,6 +304,8 @@ on property:sys.boot_completed=1
     chown media audio /sys/kernel/wdsp0/boot
     #CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
 
 # corefile limit
 on property:persist.debug.trace=1
