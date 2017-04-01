@@ -135,10 +135,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
 
-# Flip Cover App
-PRODUCT_PACKAGES += \
-    FlipFlap
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8996 \
