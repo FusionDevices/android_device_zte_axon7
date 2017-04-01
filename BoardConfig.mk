@@ -124,10 +124,6 @@
   TARGET_NO_RPC := true
   USE_DEVICE_SPECIFIC_GPS := true
 
-# Hardware
-  BOARD_HARDWARE_CLASS += \
-      device/zte/axon7/cmhw
-
 # Init
   TARGET_INIT_VENDOR_LIB := libinit_axon7
   TARGET_RECOVERY_DEVICE_MODULES := libinit_axon7
