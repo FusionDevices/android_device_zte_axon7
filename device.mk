@@ -120,6 +120,10 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, frameworks/native/build/phone-xxxhdpi-4096-hwui-memory.mk)
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    ZTEDoze
+
 # File System
 PRODUCT_PACKAGES += \
     fs_config_files
