@@ -164,13 +164,15 @@
   TARGET_USERIMAGES_USE_EXT4 := true
   TARGET_USERIMAGES_USE_F2FS := true
 
+#Power HAL
+  LIBPOWER := power.axon7
+
 # Properties
   TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Qualcomm support
   BOARD_USES_QCOM_HARDWARE := true
   BOARD_USES_QC_TIME_SERVICES := true
-  TARGET_POWERHAL_VARIANT := qcom
   #TARGET_RIL_VARIANT := caf
   PROTOBUF_SUPPORTED := true
   TARGET_TAP_TO_WAKE_NODE := "/proc/touchscreen/wake_gesture"

@@ -83,6 +83,9 @@ vidc.debug.perf.mode=2
 vidc.enc.disable.pq=true
 vidc.enc.dcvs.extra-buff-count=2
 
+# Power
+ro.hardware.power=axon7
+
 # Perf
 ro.sys.fw.bg_apps_limit=60
 ro.vendor.extension_library=libqti-perfd-client.so
