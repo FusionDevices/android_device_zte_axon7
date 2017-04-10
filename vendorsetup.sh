@@ -1,1 +1,1 @@
-add_lunch_combo nitrogen_axon7-userdebug
+add_lunch_combo aosp_axon7-userdebug
