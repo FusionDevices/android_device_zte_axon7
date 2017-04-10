@@ -68,6 +68,9 @@ ro.qualcomm.display.paneltype=1
 sdm.debug.disable_rotator_split=1
 sdm.perf_hint_window=50
 
+# Google Assistant
+ro.opa.eligible_device=true
+
 # Factory reset protection
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
