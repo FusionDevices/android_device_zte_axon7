@@ -15,7 +15,7 @@
 #
 
 # Get the long list of APNs
-PRODUCT_COPY_FILES := device/xiaomi/kenzo/apns-full-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES := device/zte/axon7/apns-full-conf.xml:system/etc/apns-conf.xml
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
