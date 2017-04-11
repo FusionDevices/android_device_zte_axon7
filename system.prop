@@ -95,9 +95,6 @@ ro.min_freq_4=307200
 # Qualcomm support
 persist.timed.enable=true
 
-# Sdcard
-ro.sys.sdcardfs=true
-
 # RIL (RADIO)
 DEVICE_PROVISIONED=1
 persist.data.iwlan.enable=true
