@@ -16,9 +16,9 @@
 $(call inherit-product, device/zte/axon7/full_axon7.mk)
 
 # Inherit some common N2 stuff.
-$(call inherit-product, vendor/aosp/common.mk)
+$(call inherit-product, vendor/bliss/config/common.mk)
 
-PRODUCT_NAME := aosp_axon7
+PRODUCT_NAME := bliss_axon7
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="P996A01_N" \
