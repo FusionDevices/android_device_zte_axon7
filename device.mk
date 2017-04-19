@@ -48,19 +48,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
     $(LOCAL_PATH)/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/audio/mixer_paths_dtp.xml:system/etc/mixer_paths_dtp.xml \
     $(LOCAL_PATH)/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
     $(LOCAL_PATH)/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_tasha_i2s.xml \
-    $(LOCAL_PATH)/audio/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
-    $(LOCAL_PATH)/audio/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/default_volume_tables.xml:system/etc/default_volume_tables.xml
+    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
