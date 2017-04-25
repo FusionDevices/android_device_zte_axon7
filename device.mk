@@ -77,7 +77,8 @@ TARGET_BOOTANIMATION_HALF_RES := true
 
 # Camera
 PRODUCT_PACKAGES += \
-    libshim_camera 
+    libshim_camera \
+    Snap
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -222,12 +223,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml
 
-# OpenCamera
-PRODUCT_PACKAGES += \
-     OpenCamera
-
 # Power HAL
-PRODUCT_PACKAGES += \
+ PRODUCT_PACKAGES += \
      power.axon7
 
 # QMI
