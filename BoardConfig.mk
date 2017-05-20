@@ -36,7 +36,6 @@
   TARGET_USES_64_BIT_BINDER := true
 
 # Assertions
-  TARGET_BOARD_INFO_FILE ?= device/zte/axon7/board-info.txt
   TARGET_OTA_ASSERT_DEVICE := ailsa_ii,axon7
 
 # Audio Flags
