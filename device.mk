@@ -225,7 +225,7 @@ PRODUCT_COPY_FILES += \
 
 # Power HAL
  PRODUCT_PACKAGES += \
-     power.axon7
+     power.msm8996
 
 # QMI
 PRODUCT_PACKAGES += \

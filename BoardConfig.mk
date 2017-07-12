@@ -167,8 +167,9 @@
   BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 # PowerHAL
-TARGET_POWERHAL_VARIANT := axon7
+TARGET_POWERHAL_VARIANT := voxpopuli
 TARGET_USES_INTERACTION_BOOST := true
+-include device/voxpopuli/sepolicy/sepolicy.mk
 
 # Properties
   TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
@@ -222,6 +223,10 @@ TARGET_USES_INTERACTION_BOOST := true
   WIFI_DRIVER_FW_PATH_STA := "sta"
   WIFI_DRIVER_FW_PATH_P2P := "p2p"
   WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+  # EAS 
+  ENABLE_CPUSETS := true
+  ENABLE_SCHEDBOOST := true
 
 # inherit from the proprietary version
   -include vendor/zte/axon7/BoardConfigVendor.mk
