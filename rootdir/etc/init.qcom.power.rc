@@ -58,6 +58,7 @@ on boot
     chown system system /dev/voxpopuli/touch_min_freq_little
 
 on enable-low-power
+
     # Disable thermal bcl hotplug to switch governor
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/devices/soc/soc:qcom,bcl/mode "disable"
@@ -65,9 +66,11 @@ on enable-low-power
     write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 0
     write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
-    # Enable Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
+    # Min/Max Freqs
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1593600
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2150400
 
     # Online CPU2
     write /sys/devices/system/cpu/cpu2/online 1
@@ -120,6 +123,9 @@ on enable-low-power
 
     # Starting io prefetcher service
     start iop
+
+    # Low Memory Killer
+    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,51256,150296,200640"
 
     # Enable all low power modes
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
