@@ -285,7 +285,9 @@ on boot
 service perfd /system/vendor/bin/perfd
     class main
     user root
-    group root system readproc
+    group root readproc
+    disabled
+    socket perfd seqpacket 0666 root system
     writepid /dev/cpuset/system-background/tasks
 
 service iop /system/bin/iop
