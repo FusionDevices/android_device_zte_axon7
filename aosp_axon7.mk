@@ -16,7 +16,7 @@
 $(call inherit-product, device/zte/axon7/full_axon7.mk)
 
 # Inherit some common N2 stuff.
-$(call inherit-product, vendor/aosp/common.mk)
+$(call inherit-product, vendor/pure/configs/pure_phone.mk)
 
 PRODUCT_NAME := aosp_axon7
 

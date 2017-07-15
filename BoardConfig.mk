@@ -66,13 +66,13 @@
   USE_CUSTOM_AUDIO_POLICY := 1
   BOARD_USE_64BITMEDIA := false
 
-# Bluetooth
-  BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/axon7/bluetooth
-  BOARD_HAVE_BLUETOOTH := true
-  BOARD_HAS_QCA_BT_ROME := true
-  BOARD_HAVE_BLUETOOTH_QCOM := true
-  QCOM_BT_USE_BTNV := true
-  QCOM_BT_USE_SMD_TTY := true
+# Some framework code requires this to enable BT
+BOARD_HAVE_BLUETOOTH := true
+BOARD_USES_WIPOWER := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/axon7/bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAS_QCA_BT_ROME := true
+WCNSS_FILTER_USES_SIBS := true
 
 # Boot animation
   TARGET_BOOTANIMATION_HALF_RES := true
@@ -182,9 +182,6 @@ TARGET_USES_INTERACTION_BOOST := true
   TARGET_RECOVERY_FSTAB := device/zte/axon7/rootdir/etc/fstab.qcom
   TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_axon7
   TARGET_RELEASETOOLS_EXTENSIONS := device/zte/axon7
-
-# RIL
-  BOARD_RIL_CLASS := ../../../device/zte/axon7/ril/
 
 # Sensors
   USE_SENSOR_MULTI_HAL := true
