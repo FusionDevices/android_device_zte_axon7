@@ -149,11 +149,12 @@ static int tfa9890_set_output_devices(struct amplifier_device *device, uint32_t 
     tfa9890_device_t *tfa9890 = (tfa9890_device_t*) device;
     switch (devices) {
         case SND_DEVICE_OUT_SPEAKER:
+        case SND_DEVICE_OUT_SPEAKER_REVERSE:
+        case SND_DEVICE_OUT_VOICE_SPEAKER:
             pthread_mutex_lock(&tfa9890->amp_update);
             tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, 0, 0, 0, tfa9890->state.amp_mode);
             pthread_mutex_unlock(&tfa9890->amp_update);
             break;
-        case SND_DEVICE_OUT_VOICE_SPEAKER:
         case SND_DEVICE_OUT_HANDSET:
         case SND_DEVICE_OUT_VOICE_HANDSET:
             pthread_mutex_lock(&tfa9890->amp_update);
