@@ -14,5 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_axon7.mk \
     $(LOCAL_DIR)/aosp_axon7.mk
