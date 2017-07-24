@@ -178,8 +178,9 @@ TARGET_USES_INTERACTION_BOOST := true
 # Qualcomm support
   BOARD_USES_QCOM_HARDWARE := true
   BOARD_USES_QC_TIME_SERVICES := true
-  TARGET_RIL_VARIANT := caf
-  TARGET_USE_SDCLANG := true
+#  TARGET_RIL_VARIANT := caf
+   PROTOBUF_SUPPORTED := true
+   TARGET_USE_SDCLANG := true
 
 # Recovery
   TARGET_RECOVERY_FSTAB := device/zte/axon7/rootdir/etc/fstab.qcom
