@@ -1,7 +1,12 @@
+
 IS_ARM64 := true
 
 # Include Official OTA Package
 WITH_OFFICIALOTA := true
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1440
 
 # Get the long list of APNs
 PRODUCT_COPY_FILES := device/zte/axon7/apns-full-conf.xml:system/etc/apns-conf.xml
