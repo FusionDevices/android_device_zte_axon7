@@ -12,6 +12,12 @@
     "revision"    : "n-mr2"
  },
  {
+    "remote"      : "fusion",
+    "repository"  : "OctopusParty/proprietary_vendor_zte",
+    "target_path" : "vendor/zte",
+    "revision"    : "n-mr2"
+ },
+ {
     "remote"      : "voxpopuli",
     "repository"  : "android_device_voxpopuli",
     "target_path" : "device/voxpopuli",
