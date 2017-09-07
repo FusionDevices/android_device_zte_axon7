@@ -1,4 +1,3 @@
 allow untrusted_app sysfs:file getattr;
 allow untrusted_app sysfs:file open;
-allow untrusted_app sysfs:file read;
-allow untrusted_app debugfs:file read; 
+allow untrusted_app sysfs:file read; 
