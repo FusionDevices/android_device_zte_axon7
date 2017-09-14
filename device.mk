@@ -75,10 +75,6 @@ TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 TARGET_BOOTANIMATION_HALF_RES := true
 
-# Busybox v1.26.2-Stericson
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/busybox:system/xbin/busybox
-
 # Camera
 PRODUCT_PACKAGES += \
     libshim_camera \
