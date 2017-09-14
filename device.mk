@@ -75,15 +75,24 @@ TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
 TARGET_BOOTANIMATION_HALF_RES := true
 
+# Busybox v1.26.2-Stericson
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/busybox:system/xbin/busybox
+
 # Camera
 PRODUCT_PACKAGES += \
     libshim_camera \
-    Snap
+
+TARGET_USES_GOOGLE_CAMERA := true
+#TARGET_USES_OP_CAMERA := true
+TARGET_USES_SNAP_CAMERA := true
+# Connectivity Engine support (CNE)
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
-
+		frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml\
+	 frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml\
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -233,7 +242,7 @@ PRODUCT_PACKAGES += \
 
 # Recovery
 PRODUCT_PACKAGES += \
-    librecovery_updater_axon7 
+    librecovery_updater_axon7
 
 # RIL
 PRODUCT_PACKAGES += \
