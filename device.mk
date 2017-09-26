@@ -80,9 +80,9 @@ PRODUCT_PACKAGES += \
     libshim_camera \
 
 TARGET_USES_GOOGLE_CAMERA := true
-#TARGET_USES_OP_CAMERA := true
+TARGET_USES_OP_CAMERA := true
 TARGET_USES_SNAP_CAMERA := true
-# Connectivity Engine support (CNE)
+
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
