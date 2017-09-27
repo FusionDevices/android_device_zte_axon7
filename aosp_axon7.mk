@@ -4,6 +4,9 @@ IS_ARM64 := true
 # Include Official OTA Package
 WITH_OFFICIALOTA := true
 
+# Support Beta OTA Opt-in (Requires additional ota xml)
+BETA_OTA := true 
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1440
