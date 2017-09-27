@@ -18,7 +18,8 @@
 #define _BDROID_BUILDCFG_H
 #define BTM_DEF_LOCAL_NAME   "Axon 7"
 // Disables read remote device feature
-#define MAX_ACL_CONNECTIONS   16
+#define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
+#define MAX_ACL_CONNECTIONS    16
 #define MAX_L2CAP_CHANNELS    16
 #define BLE_VND_INCLUDED   TRUE
 // skips conn update at conn completion
