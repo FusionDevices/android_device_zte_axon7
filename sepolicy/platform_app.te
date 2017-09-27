@@ -1,0 +1,7 @@
+allow platform_app fuseblk:dir create_dir_perms;
+allow platform_app fuseblk:file create_file_perms;
+allow platform_app fuseblk:dir search;
+allow priv_app storage_stub_file:dir getattr;
+allow platform_app exfat:dir create_dir_perms;
+allow platform_app exfat:file create_file_perms;
+allow platform_app exfat:dir search;
