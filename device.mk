@@ -307,5 +307,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vr.high_performance.xml:system/etc/permissions/android.hardware.vr.high_performance.xml
 
+# OTA Setup
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ota.manifest=https://raw.githubusercontent.com/PureFusionOS/OTA_server/master/axon7.json
 
 $(call inherit-product-if-exists, vendor/zte/axon7/axon7-vendor.mk)
