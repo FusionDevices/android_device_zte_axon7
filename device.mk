@@ -241,6 +241,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librecovery_updater_axon7
 
+# Prebuilts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/org.apache.http.legacy.jar:system/framework/org.apache.http.legacy.jar
+
 # RIL
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
