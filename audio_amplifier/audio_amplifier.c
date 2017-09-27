@@ -45,7 +45,6 @@
 typedef struct tfa9890_state {
     int in_stream;
     int in_call;
-    int reverse;
     int amp_device;
     int amp_mode;
     int calibration_done;
@@ -56,7 +55,7 @@ typedef struct tfa9890_device {
     void *lib_ptr;
     int (*speaker_needed)(int);
     void (*set_mode)(int);
-    void (*speaker_on)(int);
+    void (*speaker_on)(void);
     void (*speaker_off)(void);
     void (*set_device)(int);
     int (*calibration)(int);
@@ -66,7 +65,7 @@ typedef struct tfa9890_device {
 } tfa9890_device_t;
 
 static void tfa9890_update_amp(tfa9890_device_t *tfa9890, int in_stream, int in_call,
-                               int reverse, int amp_device, int amp_mode) {
+                               int amp_device, int amp_mode) {
     bool reinitialize = false;
 
     if (!!in_stream != !!tfa9890->state.in_stream) {
@@ -76,12 +75,6 @@ static void tfa9890_update_amp(tfa9890_device_t *tfa9890, int in_stream, int in_
 
     if (in_call != tfa9890->state.in_call) {
         tfa9890->state.in_call = in_call;
-        reinitialize = true;
-    }
-
-    if (reverse != tfa9890->state.reverse) {
-        // This may only require re-calling speaker_on
-        tfa9890->state.reverse = reverse;
         reinitialize = true;
     }
 
@@ -105,7 +98,7 @@ static void tfa9890_update_amp(tfa9890_device_t *tfa9890, int in_stream, int in_
             tfa9890->set_mode(tfa9890->state.amp_mode);
         }
         tfa9890->speaker_needed(1);
-        tfa9890->speaker_on(tfa9890->state.reverse);
+        tfa9890->speaker_on();
     } else {
         if (!tfa9890->state.calibration_done) {
             int ret = tfa9890->calibration(0);
@@ -121,18 +114,6 @@ static void tfa9890_update_amp(tfa9890_device_t *tfa9890, int in_stream, int in_
 }
 
 static tfa9890_device_t *tfa9890_dev = NULL;
-
-static int is_spkr_needed(uint32_t snd_device) {
-    switch (snd_device) {
-        case SND_DEVICE_OUT_SPEAKER:
-        case SND_DEVICE_OUT_VOICE_SPEAKER:
-        case SND_DEVICE_OUT_HANDSET:
-        case SND_DEVICE_OUT_VOICE_HANDSET:
-            return 1;
-        default:
-            return 0;
-    }
-}
 
 static int amp_dev_close(hw_device_t *device) {
     tfa9890_device_t *tfa9890 = (tfa9890_device_t*) device;
@@ -150,15 +131,24 @@ static int tfa9890_set_output_devices(struct amplifier_device *device, uint32_t 
     switch (devices) {
         case SND_DEVICE_OUT_SPEAKER:
         case SND_DEVICE_OUT_SPEAKER_REVERSE:
-        case SND_DEVICE_OUT_VOICE_SPEAKER:
             pthread_mutex_lock(&tfa9890->amp_update);
-            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, 0, 0, 0, tfa9890->state.amp_mode);
+            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
+                               0, tfa9890->state.amp_mode);
             pthread_mutex_unlock(&tfa9890->amp_update);
             break;
+        case SND_DEVICE_OUT_VOICE_SPEAKER:
         case SND_DEVICE_OUT_HANDSET:
         case SND_DEVICE_OUT_VOICE_HANDSET:
             pthread_mutex_lock(&tfa9890->amp_update);
-            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, 1, 1, 1, tfa9890->state.amp_mode);
+            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
+                               1, tfa9890->state.amp_mode);
+            pthread_mutex_unlock(&tfa9890->amp_update);
+            break;
+        default:
+            ALOGE("%s: Unhandled output device: %d\n", __func__, devices);
+            pthread_mutex_lock(&tfa9890->amp_update);
+            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
+                               0, tfa9890->state.amp_mode);
             pthread_mutex_unlock(&tfa9890->amp_update);
             break;
     }
@@ -168,11 +158,37 @@ static int tfa9890_set_output_devices(struct amplifier_device *device, uint32_t 
 static int amp_enable_output_devices(struct amplifier_device *device, uint32_t devices, bool enable) {
     ALOGD("%s: %u %d\n", __func__, devices, enable);
     tfa9890_device_t *tfa9890 = (tfa9890_device_t*) device;
+    if (tfa9890) {
+        dlclose(tfa9890->lib_ptr);
+        pthread_mutex_destroy(&tfa9890->amp_update);
+        free(tfa9890);
+    }
+    return 0;
+}
 
-    if (enable && is_spkr_needed(devices)) {
-
-    } else {
-
+    switch (devices) {
+        case SND_DEVICE_OUT_SPEAKER:
+        case SND_DEVICE_OUT_SPEAKER_REVERSE:
+            pthread_mutex_lock(&tfa9890->amp_update);
+            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
+                               tfa9890->state.amp_device, tfa9890->state.amp_mode);
+            pthread_mutex_unlock(&tfa9890->amp_update);
+            break;
+        case SND_DEVICE_OUT_VOICE_SPEAKER:
+        case SND_DEVICE_OUT_HANDSET:
+        case SND_DEVICE_OUT_VOICE_HANDSET:
+            pthread_mutex_lock(&tfa9890->amp_update);
+            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, enable,
+                               tfa9890->state.amp_device, tfa9890->state.amp_mode);
+            pthread_mutex_unlock(&tfa9890->amp_update);
+            break;
+        default:
+            ALOGE("%s: Unandled device %d\n", __func__, devices);
+            pthread_mutex_lock(&tfa9890->amp_update);
+            tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
+                               tfa9890->state.amp_device, tfa9890->state.amp_mode);
+            pthread_mutex_unlock(&tfa9890->amp_update);
+            break;
     }
     return 0;
 }
@@ -186,20 +202,21 @@ static int tfa9890_set_mode(struct amplifier_device *device, audio_mode_t mode) 
         case AUDIO_MODE_RINGTONE:
             pthread_mutex_lock(&tfa9890->amp_update);
             tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
-                               tfa9890->state.reverse, tfa9890->state.amp_device, 2);
+                               tfa9890->state.amp_device, 2);
             pthread_mutex_unlock(&tfa9890->amp_update);
             break;
         case AUDIO_MODE_IN_CALL:
         case AUDIO_MODE_IN_COMMUNICATION:
             pthread_mutex_lock(&tfa9890->amp_update);
             tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
-                               tfa9890->state.reverse, tfa9890->state.amp_device, 1);
+                               tfa9890->state.amp_device, 1);
             pthread_mutex_unlock(&tfa9890->amp_update);
             break;
         default:
+            ALOGE("%s: Unhandled Mode: %d\n", __func__, mode);
             pthread_mutex_lock(&tfa9890->amp_update);
             tfa9890_update_amp(tfa9890, tfa9890->state.in_stream, tfa9890->state.in_call,
-                               tfa9890->state.reverse, tfa9890->state.amp_device, 0);
+                               tfa9890->state.amp_device, 0);
             pthread_mutex_unlock(&tfa9890->amp_update);
             break;
     }
@@ -211,7 +228,7 @@ static int tfa9890_output_stream_start(struct amplifier_device *device, struct a
     tfa9890_device_t *tfa9890 = (tfa9890_device_t*) device;
     pthread_mutex_lock(&tfa9890->amp_update);
     tfa9890_update_amp(tfa9890, tfa9890->state.in_stream + 1, tfa9890->state.in_call,
-                       tfa9890->state.reverse, tfa9890->state.amp_device, tfa9890->state.amp_mode);
+                       tfa9890->state.amp_device, tfa9890->state.amp_mode);
     pthread_mutex_unlock(&tfa9890->amp_update);
     return 0;
 }
@@ -221,7 +238,7 @@ static int tfa9890_output_stream_standby(struct amplifier_device *device, struct
     tfa9890_device_t *tfa9890 = (tfa9890_device_t*) device;
     pthread_mutex_lock(&tfa9890->amp_update);
     tfa9890_update_amp(tfa9890, tfa9890->state.in_stream - 1, tfa9890->state.in_call,
-                       tfa9890->state.reverse, tfa9890->state.amp_device, tfa9890->state.amp_mode);
+                       tfa9890->state.amp_device, tfa9890->state.amp_mode);
     pthread_mutex_unlock(&tfa9890->amp_update);
     return 0;
 }
