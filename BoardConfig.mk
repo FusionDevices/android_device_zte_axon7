@@ -141,7 +141,7 @@ WCNSS_FILTER_USES_SIBS := true
   TARGET_KERNEL_ARCH := arm64
   TARGET_KERNEL_HEADER_ARCH := arm64
   TARGET_KERNEL_SOURCE := kernel/zte/msm8996
-  TARGET_KERNEL_CONFIG := test_defconfig
+  TARGET_KERNEL_CONFIG := lineageos_axon7_defconfig
   TARGET_KERNEL_HAVE_EXFAT := true
   TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
@@ -182,11 +182,8 @@ TARGET_USES_INTERACTION_BOOST := true
   USE_SENSOR_MULTI_HAL := true
 
 # Sepolicy (SeLinux)
-  BOARD_SEPOLICY_DIRS += \
-      device/zte/axon7/sepolicy
+  BOARD_SEPOLICY_DIRS += device/zte/axon7/sepolicy
   include device/qcom/sepolicy/sepolicy.mk
-  include vendor/pure/sepolicy/sepolicy.mk
-  include vendor/pure/sepolicy/qcom/sepolicy.mk
 
 # TWRP
   TW_THEME := portrait_hdpi

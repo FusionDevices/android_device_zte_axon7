@@ -26,7 +26,6 @@
  {
     "remote"      : "github",
     "repository"  : "LineageOS/android_vendor_nxp-nfc_opensource_frameworks",
-    "revision"    : "cm-14.1"
     "target_path" : "vendor/nxp-nfc/opensource/frameworks",
     "revision"    : "cm-14.1"
  },
