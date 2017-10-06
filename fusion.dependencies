@@ -1,7 +1,7 @@
 [
   {
     "remote"      : "FusionDevices",
-    "repository"  : "FusionDevices/android_kernel_zte_msm8996",
+    "repository"  : "sc4ryb3ar/android_kernel_zte_msm8996-1",
     "target_path" : "kernel/zte/msm8996",
     "revision"    : "n-mr2"
   },
